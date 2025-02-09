@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABIODUN SAMUEL CALCULATOR</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      animation: backgroundColorChange 10s infinite;
+    }
+
+    @keyframes backgroundColorChange {
+      0% { background-color: #ff9a9e; }
+      25% { background-color: #fad0c4; }
+      50% { background-color: #fbc2eb; }
+      75% { background-color: #a1c4fd; }
+      100% { background-color: #ff9a9e; }
+    }
+
+    .calculator {
+      background: #282c34;
+      color: white;
+      border-radius: 20px;
+      width: 350px;
+      height: 700px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .calculator-header {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .calculator-screen {
+      background: #000;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      width: 90%;
+      height: 80px;
+      color: #0f0;
+      font-size: 24px;
+      text-align: right;
+      padding: 10px;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+
+    .calculator-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 10px;
+      width: 100%;
+    }
+
+    button {
+      background: #444;
+      color: white;
+      font-size: 18px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #888;
+      transform: scale(1.1);
+    }
+
+    .function-button {
+      background: #06b;
+    }
+
+    .constant-button {
+      background: #b06;
+    }
+
+    .equals-button {
+      background: #28a745;
+      grid-column: span 2;
+    }
+    .clear-button {
+      background: #d9534f;
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="calculator-header">Abiodun's Calculator</div>
+    <div class="calculator-screen" id="screen"></div>
+    <div class="calculator-buttons">
+      <!-- Numbers -->
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button class="function-button" onclick="appendValue('/')">÷</button>
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button class="function-button" onclick="appendValue('*')">×</button>
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button class="function-button" onclick="appendValue('-')">−</button>
+      <button onclick="appendValue('0')">0</button>
+      <button onclick="appendValue('.')">.</button>
+      <button class="equals-button" onclick="calculate()">=</button>
+      <button class="function-button" onclick="appendValue('+')">+</button>
+      <!-- Functions -->
+      <button class="function-button" onclick="appendValue('Math.sin(')">sin</button>
+      <button class="function-button" onclick="appendValue('Math.cos(')">cos</button>
+      <button class="function-button" onclick="appendValue('Math.tan(')">tan</button>
+      <button class="function-button" onclick="appendValue('Math.sqrt(')">√</button>
+      <!-- Constants -->
+      <button class="constant-button" onclick="appendValue('3.14159')">π</button>
+      <button class="constant-button" onclick="appendValue('2.71828')">e</button>
+      <button class="constant-button" onclick="appendValue('6.022e23')">Avogadro</button>
+      <button class="constant-button" onclick="appendValue('9.81m/s² or 10m/s²')">g</button>
+      
+      <!-- Clear -->
+      <button class="clear-button" onclick="clearScreen()">C</button>
+      <button class="clear-button" onclick="backspace()">←</button>
+    </div>
+  </div>
+
+  <script>
+    const screen = document.getElementById("screen");
+
+    function appendValue(value) {
+      screen.textContent += value;
+    }
+
+    function calculate() {
+      try {
+        screen.textContent = eval(screen.textContent);
+      } catch (error) {
+        screen.textContent = "Error";
+      }
+    }
+
+    function clearScreen() {
+      screen.textContent = "";
+    }
+
+    function backspace() {
+      screen.textContent = screen.textContent.slice(0, -1);
+    }
+  </script>
+</body>
+</html>
